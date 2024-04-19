@@ -1,1 +1,2 @@
-# art_web_design
+# Umetnost-WD
+Projekat iz web dizajna.

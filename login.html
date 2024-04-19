@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title> ~A~R~T~ </title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="umetnost.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body class="body">
+    <div class="pocetna">
+        <div class="logodiv">
+            <div class="prvi">
+                <img src="Slike/logo.png" alt="nista">
+            </div>
+            <div class="drugi">
+                <nav id="main-menu">
+                    <a href="index.html"><b id="n">Istorija</b></a>
+                    <a href="prostorneumetnosti.html"><b id="na">Prostorne umetnosti</b></a>
+                    <a href="vremenskeumetnosti.html"><b id="nav">Vremenske umetnosti</b></a>
+                    <a href="Zanimljivosti.html"><b id="navv">Zanimljivosti</b></a>
+                    <a href="login.html" class="active"><b id="navv">Prijavi se</b></a>
+                    <a href="kontakt.html"><b id="naavv">Kontakt</b></a>
+                    <a href="Omeni.html"><b id="naa">O meni</b></a>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div style="height: 600px;" class="kontakt">
+        <div class="container">
+            <h2 id="kontakt">Prijavite se !</h2>
+            <br>
+            <form name="myForm" onsubmit="return validateForm()">
+                <div class="form-group">
+                    <label for="email"><b id="VE"> Vaš e-mail:</b></label>
+                    <input type="email" style="text-align: center;" class="form-control" title="art@example.com , ne mogu počinjati sa brojem." onkeyup="validanMejl(this)" onblur="validanMejl(this);" id="email" placeholder="art@example.com" name="e-mail" />
+                    <br>
+                </div>
+                <div class="form-group">
+                    <label for="password"><b id="VI">Vaša lozinka:</b></label>
+                    <input type="password" style="text-align: center;" class="form-control" title="txWZsdYUik"  id="password" placeholder="nek bude vise od  6 karaktera" name="password" />
+                </div><br>
+                <br>
+                <button type="submit" onclick="validateForm()" style="float:right; border-radius: 10px; width: 200px; height: 60px;"><b id="p">Prijavi se</b></button>
+            </form>
+        </div>
+    </div>
+
+    <div id="footer">
+        <a href="index.html" class="btn btn-dark btn-lg " role="button"> 1</a>
+        <a href="prostorneumetnosti.html" class="btn btn-dark btn-lg " role="button"> 2</a>
+        <a href="vremenskeumetnosti.html" class="btn btn-dark btn-lg " role="button">3</a>
+        <a href="Zanimljivosti.html" class="btn btn-dark btn-lg " role="button">4</a>
+        <a href="kontakt.html" class="btn btn-light btn-lg " role="button">5</a>
+        <a id="sledeca" href="kontakt.html" class="btn btn-dark btn-lg " role="button">Sledeća</a>
+        <center><i>Copyright@umetnost.com</i></center>
+    </div>
+    <script src="myScript.js"></script>
+    <script src="function.js"></script>
+    <script src="login.js"></script>
+</body>
+
+</html>

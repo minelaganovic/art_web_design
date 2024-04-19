@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title> ~A~R~T~ </title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="umetnost.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/superagent"></script>
+    <style>
+        .artwork-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;  
+            float: center;
+            position: center;
+            margin-top: 10px;
+        }
+        .artwork-card {
+            border: 1px solid #cccccc;
+            background: linear-gradient(rgba(62, 173, 162, 0.658), rgba(192, 112, 46, 0.904));
+            border-radius: 5px;
+            margin: 20px;
+            padding: 15px;
+            box-shadow: 10px 10px 20px 10px black;
+            width: calc(33.33% - 20px);
+            box-sizing: border-box;
+        }
+        .artwork-card img {
+            max-width: 500px;
+            height: 200px;
+            margin-bottom: 10px;
+            border-radius: 5px 5px 0 0;
+            padding-left: 40px;
+        }
+        .artwork-card p {
+            margin: 10px;
+        }
+    </style>
+</head>
+<body class="body">
+    <div class="pocetna">
+        <div class="logodiv">
+            <div class="prvi">
+                <img src="Slike/logo.png" alt="nista">
+            </div>
+            <div class="drugi">
+                <nav id="main-menu">
+                    <p href="home.html" style="margin-top: 20px; font-size: 15px; margin-left: 170;" class="active" ><b id="navv">The Most Famous Work Of Art</b></p>
+                    <button style="height: 40px; width: 85px;margin-left: 300px; margin-top: 20px; background-color: blue; float:right; border-radius: 10px;"><a  style="height: 40px; width: 185px;background-color: rgb(198, 198, 209); float:right; border-radius: 10px;" href="index.html"><b>Odjavi se</b></a></button>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <div>
+        <div class="artwork-container" id="artworkList">
+            <!-- Ovde će se dodati kartice -->
+        </div>
+    </div>
+   
+    <script>
+        var xappToken = 'eyJhbGciOiJIUzI1NiJ9.eyJyb2xlcyI6IiIsInN1YmplY3RfYXBwbGljYXRpb24iOiJhZDhkY2FkYi1hMzc1LTRjY2EtYjRjOC03YjBhZjM0NmI1MTIiLCJleHAiOjE3MTIzMTc1NjEsImlhdCI6MTcxMTcxMjc2MSwiYXVkIjoiYWQ4ZGNhZGItYTM3NS00Y2NhLWI0YzgtN2IwYWYzNDZiNTEyIiwiaXNzIjoiR3Jhdml0eSIsImp0aSI6IjY2MDZhOWY5ZTA3NWQ4MDAwZGE5ZWE4NyJ9.wbB-9ijYBdOC4zaIHvLoibugdTnYVJN-Tax8-sLEyZI';
+    
+        var artworksContainer = document.getElementById('artworkList');
+    
+        // Dohvatanje Xapp tokena preko Superagent biblioteke
+        superagent
+          .get('https://api.artsy.net/api/artworks')
+          .set('X-Xapp-Token', xappToken)
+          .end(function(err, res) {
+            if (err) {
+              console.error('Error fetching artworks:', err);
+              return;
+            }
+    
+            // Niz sa nazivima umetnika
+            var customArtistNames = ['Gustav Klimt.', 'Francisco Goya', 'Rembrandt van Rijn','Leonardo da Vinci','Dejeuner sur Herbe'];
+    
+            res.body._embedded.artworks.forEach((artwork, index) => {
+                const artworkCard = document.createElement('div');
+                artworkCard.classList.add('artwork-card');
+    
+                // Vaš naziv umetnika
+                var customArtistName = customArtistNames[index] || 'Vaš naziv umetnika';
+    
+                // Postavljanje sadržaja kartice
+                artworkCard.innerHTML = `
+                    <h3>${artwork.title}</h3>
+                    <p><b>Artist: </b>${customArtistName}</p>
+                    <p><b>Date:</b> ${artwork.date}</p>
+                    <p>Medium: ${artwork.medium}</p>
+                    <img src="${artwork._links.thumbnail.href}" alt="${artwork.title}">
+                    <p>Dimensions (cm): ${artwork.dimensions.cm.text}</p>
+                    <p><b>Collecting Institution:</b> ${artwork.collecting_institution}</p>
+                    <p>Additional Information: <a href="${artwork.additional_information}" target="_blank">Link</a></p>
+                    <p>Image Rights: ${artwork.image_rights}</p>
+                    <hr>
+                `;
+    
+                // Dodavanje kartice u kontejner
+                artworksContainer.appendChild(artworkCard);
+            });
+        });
+    </script>
+    
+
+    <script src="myScript.js"></script>
+</body>
+</html>
